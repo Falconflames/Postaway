@@ -168,6 +168,11 @@ app.use((req, res, next) => {
   next();
 });
 
+// Root Route
+app.get("/", (req, res) => {
+  res.redirect("/signin");
+});
+
 // Health check
 app.get("/health", (req, res) => {
   res.status(200).json({
