@@ -22,7 +22,7 @@ import asyncHandler from "../utils/asyncHandler.js";
 import logger from "../utils/logger.js";
 
 // Errors
-import NotFoundError from "../errors/notFound.error.js";
+import NotFoundError from "../errors/notfound.error.js";
 import ForbiddenError from "../errors/forbidden.error.js";
 import ValidationError from "../errors/validation.error.js";
 
