@@ -6,7 +6,7 @@ import Comment from "../models/comment.model.js";
 import Post from "../models/post.model.js";
 
 // Error
-import NotFoundError from "../errors/notFound.error.js";
+import NotFoundError from "../errors/notfound.error.js";
 import ValidationError from "../errors/validation.error.js";
 import ForbiddenError from "../errors/forbidden.error.js";
 
