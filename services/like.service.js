@@ -7,7 +7,7 @@ import Post from "../models/post.model.js";
 
 // Errors
 import ValidationError from "../errors/validation.error.js";
-import NotFoundError from "../errors/notFound.error.js";
+import NotFoundError from "../errors/notfound.error.js";
 import ConflictError from "../errors/conflict.error.js";
 
 /**
