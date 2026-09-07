@@ -1,0 +1,267 @@
+<body>
+  <div class="main-container">
+    <h1>Posts</h1>
+    <div class="post-container">
+      <% if (posts && posts.length> 0) { %> <% posts.forEach((post)=> { %>
+      <% if (post.postData.type === "image"){ %>
+      <!-- Image Post Card -->
+      <div class="card col-lg-6 col-sm-10 col-12 mb-3">
+        <div class="card-body p-0">
+          <div class="card-head">
+            <div class="left-align">
+              <div class="profile-container">
+                <img class="profile-picture" src="<%=post.profilePicture%>" alt="profile-pic" />
+              </div>
+              <p class="username m-1">
+                <%= post.userId.username %>
+              </p>
+            </div>
+            <div class="dropdown low-z-dropdown">
+              <button type="button" class="dropdown-toggle" data-bs-toggle="dropdown">
+                <span>...</span>
+              </button>
+              <div class="dropdown-menu">
+                <button type="button" class="select-file-btn">Update</button>
+                <button type="button" class="delete" data-post-id="<%= post._id %>">Delete</button>
+              </div>
+            </div>
+            <form class="updatePost-form" action="/updatePost/<%= post._id %>" method="POST" enctype="multipart/form-data">
+              <input type="hidden" name="returnTo" value="/posts" />
+              <input type="file" required class="post-update-input" style="display: none" name="post" accept="image/*,video/*" />
+              <div class="preview-container"></div>
+              <button type="button" class="close-preview">X</button>
+              <textarea maxlength="300" class="caption-input" name="caption" placeholder="Edit caption..."><%= post.postData.caption %></textarea>
+              <button type="submit" class="submit-update-btn">Save Updates</button>
+            </form>
+          </div>
+
+          <img class="card-img" src="<%= post.postData.path %>" alt="Image post" />
+          <div class="card-heart"><i class="fa-solid fa-heart lg"></i></div>
+
+          <div class="card-btn">
+            <button type="button" class="like" data-post-id="<%= post._id %>">
+              <% if (userLikes.includes(post._id.toString())) { %>
+              <i class="fa-solid fa-heart lg liked"></i>
+              <% } else { %>
+              <i class="fa-regular fa-heart lg"></i>
+              <% } %>
+            </button>
+            <button type="button" class="comment" data-post-id="<%= post._id %>">
+              <i class="fa-regular fa-comments lg" style="color: #ffffff"></i>
+            </button>
+          </div>
+
+          <button class="like-count-btn">
+            <p class="like-count" id="like-count-<%= post._id %>">
+              <%= post.likeCount %>
+            </p>
+            <span>likes</span>
+          </button>
+
+          <p class="caption-text"><b>
+              <%= post.userId.username %> &nbsp;
+            </b><%= post.postData.caption %></p>
+        </div>
+      </div>
+
+      <!-- Image Post Comments -->
+      <div class="comment-bg-bg" data-post-id="<%= post._id %>">
+        <div class="comment-bg col-lg-6 col-sm-10 col-11">
+          <button type="button" class="close-comment">X</button>
+          <div class="comment-container">
+            <p class="caption-text"><b>
+                <%= post.userId.username %> &nbsp;
+              </b><%= post.postData.caption %></p>
+            <p class="no-comments-msg">Be The First One To Comment.</p>
+            <% if (post.comments && post.comments.length> 0) { %>
+            <% post.comments.forEach((comment)=> { %>
+            <div class="comments" id="comment-<%= comment._id %>">
+              <p>
+                <b>
+                  <%= comment.userId.username %>
+                </b>
+                <span id="comment-text-<%= comment._id %>">
+                  <%= comment.text %>
+                </span>
+              </p>
+              <div class="dropdown">
+                <button type="button" class="dropdown-toggle" data-bs-toggle="dropdown">
+                  <span>...</span>
+                </button>
+                <div class="dropdown-menu">
+                  <button type="button" class="comment-update-btn" data-comment-id="<%= comment._id %>">
+                    Update
+                  </button>
+                  <button type="button" class="comment-delete-btn" data-comment-id="<%= comment._id %>">
+                    Delete
+                  </button>
+                </div>
+              </div>
+
+              <div class="comment-form-bg">
+                <form class="update-comment-form" id="updateComment-form-<%= comment._id %>">
+                  <input type="text" maxlength="500" name="text" class="update-input" placeholder="Edit your comment..." required />
+                  <button type="submit" class="real-comment-update-btn" data-comment-id="<%= comment._id %>">
+                    Update
+                  </button>
+                </form>
+              </div>
+            </div>
+            <% })} %>
+
+            <form data-post-id="<%= post._id %>" id="comment-form-<%= post._id %>" class="comment-form">
+              <input type="text" maxlength="500" name="text" placeholder="Add a comment..." required />
+              <button type="submit" class="comment-post-btn">Post</button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <% } else if (post.postData.type === "video") { %>
+      <!-- Video Post Card -->
+      <div class="card col-lg-6 col-sm-10 col-12 mb-3">
+        <div class="card-body p-0">
+          <div class="card-head">
+            <div class="left-align">
+              <div class="profile-container">
+                <img class="profile-picture" src="<%=post.profilePicture%>" alt="profile-pic" />
+              </div>
+              <p class="username m-1">
+                <%= post.userId.username %>
+              </p>
+            </div>
+            <div class="dropdown low-z-dropdown">
+              <button type="button" class="dropdown-toggle" data-bs-toggle="dropdown">
+                <span>...</span>
+              </button>
+              <div class="dropdown-menu">
+                <button type="button" class="select-file-btn">Update</button>
+                <button type="button" class="delete" data-post-id="<%= post._id %>">Delete</button>
+              </div>
+            </div>
+            <form class="updatePost-form" action="/updatePost/<%= post._id %>" method="POST" enctype="multipart/form-data">
+              <input type="hidden" name="returnTo" value="/posts" />
+              <input type="file" required class="post-update-input" style="display: none" name="post" accept="image/*,video/*" />
+              <div class="preview-container"></div>
+              <button type="button" class="close-preview">X</button>
+              <textarea maxlength="300" class="caption-input" name="caption" placeholder="Edit caption..."><%= post.postData.caption %></textarea>
+              <button type="submit" class="submit-update-btn">Save Updates</button>
+            </form>
+          </div>
+
+          <video class="card-video" controls>
+            <source src="<%= post.postData.path %>" type="<%= post.postData.type %>" />
+            Your browser does not support the video tag.
+          </video>
+
+          <div class="card-heart"><i class="fa-solid fa-heart lg"></i></div>
+
+          <div class="card-btn">
+            <button type="button" class="like" data-post-id="<%= post._id %>">
+              <% if (userLikes.includes(post._id.toString())) { %>
+              <i class="fa-solid fa-heart lg liked"></i>
+              <% } else { %>
+              <i class="fa-regular fa-heart lg"></i>
+              <% } %>
+            </button>
+            <button type="button" class="comment" data-post-id="<%= post._id %>">
+              <i class="fa-regular fa-comments lg" style="color: #ffffff"></i>
+            </button>
+          </div>
+
+          <button class="like-count-btn">
+            <p class="like-count" id="like-count-<%= post._id %>">
+              <%= post.likeCount %>
+            </p>
+            <span>likes</span>
+          </button>
+
+          <p class="caption-text"><b>
+              <%= post.userId.username %> &nbsp;
+            </b><%= post.postData.caption %></p>
+        </div>
+      </div>
+
+      <!-- Video Post Comments -->
+      <div class="comment-bg-bg" data-post-id="<%= post._id %>">
+        <div class="comment-bg col-lg-6 col-sm-10 col-11">
+          <button type="button" class="close-comment">X</button>
+          <div class="comment-container">
+            <p class="caption-text"><b>
+                <%= post.userId.username %> &nbsp;
+              </b><%= post.postData.caption %></p>
+            <p class="no-comments-msg">Be The First One To Comment.</p>
+            <% if (post.comments && post.comments.length> 0) { %>
+            <% post.comments.forEach((comment)=> { %>
+            <div class="comments" id="comment-<%= comment._id %>">
+              <p>
+                <b>
+                  <%= comment.userId.username %>
+                </b>
+                <span id="comment-text-<%= comment._id %>">
+                  <%= comment.text %>
+                </span>
+              </p>
+              <div class="dropdown">
+                <button type="button" class="dropdown-toggle" data-bs-toggle="dropdown">
+                  <span>...</span>
+                </button>
+                <div class="dropdown-menu">
+                  <button type="button" class="comment-update-btn" data-comment-id="<%= comment._id %>">
+                    Update
+                  </button>
+                  <button type="button" class="comment-delete-btn" data-comment-id="<%= comment._id %>">
+                    Delete
+                  </button>
+                </div>
+              </div>
+
+              <div class="comment-form-bg">
+                <form class="update-comment-form" id="updateComment-form-<%= comment._id %>">
+                  <input type="text" maxlength="500" name="text" class="update-input" placeholder="Edit your comment..." required />
+                  <button type="submit" class="real-comment-update-btn" data-comment-id="<%= comment._id %>">
+                    Update
+                  </button>
+                </form>
+              </div>
+            </div>
+            <% })} %>
+
+            <form data-post-id="<%= post._id %>" id="comment-form-<%= post._id %>" class="comment-form">
+              <input type="text" maxlength="500" name="text" placeholder="Add a comment..." required />
+              <button type="submit" class="comment-post-btn">Post</button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <% } else { %>
+      <!-- Unsupported File -->
+      <div class="err-text">
+        <p>Unsupported File Type</p>
+      </div>
+      <% } %>
+      <% }) %>
+      <% } else { %>
+      <!-- No Posts -->
+      <div class="err-text">
+        <p>No posts available.</p>
+      </div>
+      <% } %>
+    </div>
+
+    <!-- Upload Post Button -->
+    <div class="upload-post-container">
+      <form id="uploadPost-form" action="/postUpload" method="POST" enctype="multipart/form-data">
+        <input type="hidden" name="returnTo" value="/posts" />
+        <input type="file" required id="uploadFileInput" name="post" style="display: none;" accept="image/*,video/*" />
+        <button type="button" id="createPostBtn" class="create-post-btn">Create Post</button>
+        <div id="uploadPreviewContainer" class="preview-container">
+        </div>
+        <button type="button" id="uploadClosePreview">X</button>
+        <textarea type="text" maxlength="300" id="uploadCaptionInput" name="caption" placeholder="Enter caption..."></textarea>
+        <button type="submit" id="postBtn" class="post-btn">Post</button>
+      </form>
+    </div>
+  </div>
+</body>

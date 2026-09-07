@@ -1,0 +1,145 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.navbar {
+  border-bottom: 1px solid #343434;
+  padding: 0;
+}
+
+.logo-img {
+  height: 50px;
+  background-color: #fff;
+  padding: 5px 5px;
+  margin: 5px;
+  border-radius: 10px;
+}
+
+#nav-name {
+  color: #fff;
+  margin-left: 25px;
+}
+
+.offcanvas {
+  color: white;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(50px);
+}
+
+.offcanvas-header {
+  border-bottom: 5px solid #343434;
+  padding: 10.5px 10px;
+}
+
+.offcanvas-title {
+  font-size: 22px;
+}
+
+.offcanvas-body {
+  padding: 0;
+}
+
+@media screen and (min-width: 991px) {
+  .navbar-expand-lg .navbar-nav .nav-link {
+    padding: 16px 60px;
+    border: none;
+    font-size: 22px;
+  }
+
+  .offcanvas-body {
+    color: #fff;
+    justify-content: center;
+    position: relative;
+    right: 100px;
+  }
+
+  .logout-form .logout-btn {
+    font-size: 22px;
+    color: inherit;
+    background: none;
+    border: none;
+    padding: 16px 60px;
+  }
+
+  .navbar-expand-lg .offcanvas-body li a:hover {
+    color: rgb(87, 185, 255);
+    background: none;
+  }
+
+  .navbar-expand-lg .logout-btn:hover {
+    color: rgb(87, 185, 255);
+    background: none;
+  }
+}
+
+.offcanvas-body li a {
+  color: #fff;
+  border-bottom: 2px solid #343434;
+  text-align: center;
+  font-size: 18px;
+}
+
+.offcanvas-body li a:hover {
+  color: rgb(87, 185, 255);
+  background-color: #343434;
+}
+
+.logout-btn {
+  text-align: center;
+  font-size: 18px;
+  color: inherit;
+  background: none;
+  border: none;
+  padding: 8px 0px;
+  width: 100%;
+}
+
+.logout-btn:hover {
+  color: rgb(87, 185, 255);
+  background-color: #343434;
+}
+
+.flash-message {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 5px;
+  border-radius: 5px;
+  font-size: 14px;
+  color: #fff;
+  background-color: #3fe165;
+  z-index: 9999;
+  animation: fadeOut 0.4s ease-in-out 2.2s forwards;
+  font-weight: bold;
+  box-shadow: 3px 3px 10px rgba(255, 255, 255, 0.7);
+}
+
+.flash-message.error {
+  background-color: #dc3545;
+}
+
+.flash-message strong {
+  width: 90%;
+  text-align: center;
+}
+
+.flash-message .btn-close {
+  margin-left: 5px;
+  padding: 5px;
+  border: 2px solid #000000;
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-20px);
+    pointer-events: none;
+  }
+}

@@ -1,0 +1,56 @@
+<body>
+  <div class="main-container">
+    <h1>Edit Profile</h>
+    <h2 id="username"><%= username %></h2>
+    <div class="profile-image">
+      <div class="img">
+        <button type="button" class="profile-image-btn">
+          <% if(profilePicture){%>
+          <img src="<%= profilePicture %>" alt="profile-pic" class="dis-img" id="profile-pic" />
+          <% }else{ %>
+          <img src="/assets/NoProfileImage.jpg" class="dis-img" alt="profile-pic" />
+          <% } %>
+        </button>
+      </div>
+      <button id="change-pic-btn">Change Photo</button>
+    </div>
+    <div class="edit-form">
+      <div>
+        <h2>Bio</h2>
+        <div class="bio-container">
+          <!-- <textarea id="bio-text" name="biotext" maxlength="150" placeholder="Bio"> -->
+          <textarea id="bio-text" name="biotext" placeholder="Bio"><%=biotext%></textarea>
+          <p id="line-count">0/7</p>
+          <p id="char-count">0/150</p>
+        </div>
+      </div>
+      <div>
+        <label for="gender">
+          <h2>Gender</h2>
+        </label>
+        <select id="gender" name="gender">
+          <option value="male" <%= gender === "male" ? "selected" : "" %>> Male
+          <option value="female" <%= gender === "female" ? "selected" : ""%>>
+            Female
+          <option value="others" <%= gender === "others" ? "selected" :
+          "" %>> Others
+        </select>
+      </div>
+    </div>
+    <div class="submit-btn">
+      <button id="save-profile">Save</button>
+    </div>
+  </div>
+  <div class="edit-bg"></div>
+  <div class="edit-pic">
+    <h2>Change Profile Image</h2>
+    <form id="uploadForm" action="/uploads" method="POST" enctype="multipart/form-data">
+      <button class="upload-btn" type="button">Upload Photo</button>
+      <input type="hidden" name="returnTo" value="/editprofile" />
+      <input type="file" required id="fileInput" name="profilePicture" accept="image/*" />
+    </form>
+    <button class="remove-btn" type="button">Remove Current Photo</button>
+    <button class="cancel-btn" type="button">Cancel</button>
+  </div>
+
+</body>

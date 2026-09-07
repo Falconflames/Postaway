@@ -1,0 +1,157 @@
+<body>
+  <main class="form-body">
+    <% if (errors && errors.length > 0) { %>
+    <div class="flash" >
+      <ul class="message">
+        <% errors.forEach(error => { %>
+        <li><%= error.msg %></li>
+        <% }); %>
+      </ul>
+    </div>
+    <%}%>
+    <div class="form-container">
+      <h2 class="app-name">Postaway</h2>
+      <input
+        type="radio"
+        id="signin-tab"
+        name="tab"
+        placeholder="SignIn"
+        <%if(showSignIn){%>
+      checked <% } %> />
+      <label id="sin-label" class="form-label" for="signin-tab">SignIn</label>
+
+      <input
+        type="radio"
+        id="signup-tab"
+        name="tab"
+        placeholder="SignUp"
+        <%if(showSignUp){%>
+      checked <% } %> />
+      <label class="form-label" for="signup-tab">SignUp</label>
+
+      <div class="form signin-form">
+        <h2>Sign In</h2>
+        <form action="/signin" method="post">
+          <input
+            type="text"
+            name="username"
+            id="username-email"
+            placeholder="Username/Email"
+            required
+            maxlength="254"
+            autocomplete="username"
+            spellcheck="false"
+            autocapitalize="off"
+            value="<%= username || ''%>"
+          />
+          <input
+            type="password"
+            name="password"
+            id="signin-password"
+            required
+            maxlength="64"
+            placeholder="Password"
+            autocomplete="current-password"
+          />
+          <button
+            type="button"
+            class="toggle-password signin-password"
+            data-target="signin-password"
+          >
+            Show
+          </button>
+          <button class="signin-signup-btn" type="submit" >SignIn</button>
+        </form>
+        <p>
+          Don't have an account ? &nbsp;&nbsp;<label
+            class="form-label account"
+            for="signup-tab"
+            >Sign Up Here</label
+          >
+        </p>
+      </div>
+      <div class="form signup-form">
+        <h2>Sign Up</h2>
+        <form action="/signup" method="post">
+          <input
+            type="text"
+            name="fullname"
+            id="fullname"
+            placeholder="Full Name"
+            required
+            minlength="3"
+            maxlength="50"
+            autocomplete="name"
+            spellcheck="false"
+            value="<%= fullname || '' %>"
+          />
+          <input
+            type="text"
+            name="username"
+            id="username"
+            placeholder="Username"
+            required
+            minlength="3"
+            maxlength="20"
+            autocomplete="username"
+            spellcheck="false"
+            autocapitalize="off"
+            value="<%= username || ''%>"
+          />
+          <input
+            type="email"
+            name="email"
+            id="email"
+            placeholder="Email Address"
+            required
+            maxlength="254"
+            autocomplete="email"
+            spellcheck="false"
+            autocapitalize="off"
+            value="<%= email || '' %>"
+          />
+          <input
+            type="password"
+            name="password"
+            id="signup-password"
+            placeholder="Password"
+            required
+            maxlength="64"
+            autocomplete="new-password"
+          />
+          <button
+            type="button"
+            class="toggle-password signup-password"
+            data-target="signup-password"
+          >
+            Show
+          </button>
+          <input
+            type="password"
+            name="confirm-password"
+            id="confirm-password"
+            placeholder="Confirm Password"
+            required
+            maxlength="64"
+            autocomplete="new-password"
+          />
+          <button
+            type="button"
+            class="toggle-password confirm-password"
+            data-target="confirm-password"
+          >
+            Show
+          </button>
+          <button class="signin-signup-btn" type="submit" >SignUp</button>
+        </form>
+        <p>
+          Already have an account ? &nbsp;&nbsp;<label
+            class="form-label account"
+            for="signin-tab"
+            >Sign In Here</label
+          >
+        </p>
+      </div>
+    </div>
+  </main>
+</body>
