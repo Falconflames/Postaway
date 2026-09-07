@@ -7,7 +7,7 @@ import Comment from "../models/comment.model.js";
 import Like from "../models/like.model.js";
 
 //Errors
-import NotFoundError from "../errors/notfound.error.js";
+import NotFoundError from "../errors/notFound.error.js";
 
 /**
  * Creates a new post.
