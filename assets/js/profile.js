@@ -1044,6 +1044,7 @@ document.addEventListener("DOMContentLoaded", () => {
       );
     });
   });
+  
   // Likes
   likeBtns.forEach((likeButton) => {
     likeButton.addEventListener("click", () => {
@@ -1052,6 +1053,10 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // Double-click likes
+  cardHearts.forEach((heart, index) => {
+    handleDoubleClickLike(heart, index);
+  });
+  
   cardImages.forEach((image, index) => {
     handleDoubleClickLike(image, index);
   });
