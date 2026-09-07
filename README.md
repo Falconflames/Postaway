@@ -65,8 +65,8 @@ Postaway/
 └── README.md                # Project documentation
 ```
 
-⚙️ Environment Variables Setup
-* Create a .env file in the root directory of your project and populate it with your environment variables:
+## ⚙️ Environment Variables Setup
+  * Create a .env file in the root directory of your project and populate it with your environment variables:
 
 # Code snippet
 * PORT=8000
@@ -74,7 +74,7 @@ Postaway/
 * JWT_SECRET=your_jwt_secret_key
 * NODE_ENV=development
 
-🚀 Getting Started
+## 🚀 Getting Started
 * Prerequisites
 * Node.js (v18.0.0 or higher)
 * MongoDB running locally or a MongoDB Atlas connection string.
@@ -103,41 +103,47 @@ Installation
 5. Access the application:
   * Open your browser and navigate to http://localhost:8000.
 
-🔗 API Endpoints Summary
-🔑 Authentication Routes
-Method     Endpoint      Description
-GET        /signup       Render signup page
-POST       /signup       Register a new user
-GET        /signin       Render signin page
-POST       /signin       Authenticate user
-POST       /logout       Log out user and clear session cookie
+## 🔗 API Endpoints Summary
 
-👤 Profile Routes
-Method     Endpoint                 Description
-GET        /profileRender           authenticated user profile
-GET        /editprofileRender       edit profile form
-PUT        /editprofileUpdate       user profile details
-POST       /uploadsUpload           profile picture
-DELETE     /removeProfilePicture    Remove profile picture
+### 🔑 Authentication Routes
+| Method | Endpoint | Description |
+| :--- | :--- | :--- |
+| `GET` | `/signup` | Render signup page |
+| `POST` | `/signup` | Register a new user |
+| `GET` | `/signin` | Render signin page |
+| `POST` | `/signin` | Authenticate user |
+| `POST` | `/logout` | Log out user and clear session cookie |
 
-📝 Post Routes
-Method     Endpoint              Description
-GET        /posts                Retrieve and render post feed
-POST       /postUpload           Create a new post with image/video attachment
-POST       /updatePost/:postId   Edit existing post details
-DELETE     /deletePost/:postId   Delete post and cascade remove likes/comments
+### 👤 Profile Routes
+| Method | Endpoint | Description |
+| :--- | :--- | :--- |
+| `GET` | `/profile` | Render authenticated user profile |
+| `GET` | `/editprofile` | Render edit profile form |
+| `PUT` | `/editprofile` | Update user profile details |
+| `POST` | `/uploads` | Upload profile picture |
+| `DELETE` | `/removeProfilePicture` | Remove profile picture |
 
-❤️ Like Routes
-Method     Endpoint         Description
-GET        /likes/:postId   Get all likes for a post
-PATCH      /toggle/:postId  Toggle like/unlike state on a post
+### 📝 Post Routes
+| Method | Endpoint | Description |
+| :--- | :--- | :--- |
+| `GET` | `/posts` | Retrieve and render post feed |
+| `POST` | `/postUpload` | Create a new post with image/video attachment |
+| `POST` | `/updatePost/:postId` | Edit existing post details |
+| `DELETE` | `/deletePost/:postId` | Delete post and cascade remove likes/comments |
 
-💬 Comment Routes
-Method     Endpoint                    Description
-GET        /comments/:postId           Fetch all comments for a post
-POST       /comment/:postId            Add a new comment to a post
-PUT        /updateComment/:commentId   Update comment text
-DELETE     /deleteComment/:commentId   Delete a comment
+### ❤️ Like Routes
+| Method | Endpoint | Description |
+| :--- | :--- | :--- |
+| `GET` | `/likes/:postId` | Get all likes for a post |
+| `PATCH` | `/toggle/:postId` | Toggle like/unlike state on a post |
+
+### 💬 Comment Routes
+| Method | Endpoint | Description |
+| :--- | :--- | :--- |
+| `GET` | `/comments/:postId` | Fetch all comments for a post |
+| `POST` | `/comment/:postId` | Add a new comment to a post |
+| `PUT` | `/updateComment/:commentId` | Update comment text |
+| `DELETE` | `/deleteComment/:commentId` | Delete a comment |
 
 📜License
 Distributed under the MIT License. See LICENSE for more information.
