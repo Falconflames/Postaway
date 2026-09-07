@@ -168,6 +168,14 @@ app.use((req, res, next) => {
   next();
 });
 
+// Health check
+app.get("/health", (req, res) => {
+  res.status(200).json({
+    success: true,
+    status: "ok",
+  });
+});
+
 /**
  * Authentication routes.
  */
