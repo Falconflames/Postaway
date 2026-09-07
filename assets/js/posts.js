@@ -911,6 +911,10 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // Double-click likes
+  cardHearts.forEach((heart, index) => {
+    handleDoubleClickLike(heart, index);
+  });
+  
   cardImages.forEach((image, index) => {
     handleDoubleClickLike(image, index);
   });
