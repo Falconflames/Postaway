@@ -6,7 +6,7 @@ import User from "../models/user.model.js";
 
 //Errors
 import ConflictError from "../errors/conflict.error.js";
-import NotFoundError from "../errors/notFound.error.js";
+import NotFoundError from "../errors/notfound.error.js";
 import UnauthorizedError from "../errors/unauthorized.error.js";
 import ValidationError from "../errors/validation.error.js";
 
